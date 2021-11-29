@@ -13,29 +13,33 @@ namespace studentDiary
             string[] subjects = null;
             int[][] marks = null;
 
-            Console.Write("\tPlease,enter number of subjects");
+            Console.WriteLine("\tPlease,enter number of subjects");
             int n = Convert.ToInt32(Console.ReadLine());
             subjects = new string[n];
             for(int i = 0; i < n; i++)
             {
-                Console.Write($"\tPlease,enter subject ({i+1}/{n}) ");
+                Console.Write($"\tPlease,enter subject ({i+1}/{n})  ");
                 subjects[i] = Console.ReadLine();
             }
 
             marks = new int[n][];
             for(int i = 0; i < n; i++)
             {
-                Console.Write($"\tPlease,enter number  marks for subject {subjects[i]} ");
+                Console.WriteLine($"\tPlease,enter number  marks for subject {subjects[i]} ");
                 int m = Convert.ToInt32(Console.ReadLine());
                 marks[i] = new int[m];
                 for(int j = 0; j < m; j++)
                 {
-                    Console.Write($"\tPlease,enter marks ({i + 1}/{m}) ");
-                    marks[i][j] = Convert.ToInt32(Console.Read());
+                    Console.Write($"\tPlease,enter marks ({j + 1}/{m}) ");
+                    marks[i][j] = Convert.ToInt32(Console.ReadLine());
                 }
-                bool key=false;
-                marks[i].Average() > 2.5 && m > 2 ? key = true : key = false;            /*Console.WriteLine("\tCertified") : Console.WriteLine("\tNot Certified");*/
-            }
+                //bool key = marks[i].Average() > 2.5 && m > 2 ? true : false;
+                //if (key == true)
+                //    Console.WriteLine("\tCertified");
+                //else
+                //    Console.WriteLine("\tNot Certified");
+                /*Console.WriteLine("\tCertified") : Console.WriteLine("\tNot Certified");*/
+            }                                                                              /*marks[i].Average() > 2.5 && m > 2 ? key = true : key = false;*/
 
             for(int i = 0; i < subjects.Length; i++)
             {
@@ -50,7 +54,12 @@ namespace studentDiary
             {
                 double av = marks[i].Average();
                 totalSum += av;
-                Console.WriteLine($"\tAverage mark of {subjects[i]} = {marks[i].Average()}");
+                bool key = marks[i].Average() > 2.5 && marks[i].Length > 2 ? true : false;
+                Console.Write($"\tAverage mark of {subjects[i]} = {marks[i].Average()}");
+                if (key == true)
+                    Console.WriteLine("\t\tCertified");
+                else
+                    Console.WriteLine("\t\tNot Certified");
             }
             Console.WriteLine($"\tAverage mark of study: {totalSum/subjects.Length}");
         }
